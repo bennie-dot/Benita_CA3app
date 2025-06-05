@@ -1,31 +1,26 @@
-import { StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+const ProfileScreen = () => {
+  const [name, setName] = useState('');
+  const [bio, setBio] = useState('');
 
-export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
+      <Text>Name:</Text>
+      <TextInput style={styles.input} value={name} onChangeText={setName} />
+
+      <Text>Bio:</Text>
+      <TextInput style={styles.input} value={bio} onChangeText={setBio} />
+
+      <Button title="Save" onPress={() => alert(`Saved: ${name}, ${bio}`)} />
     </View>
   );
-}
+};
+
+export default ProfileScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+  container: { flex: 1, padding: 20 },
+  input: { borderWidth: 1, marginBottom: 10, padding: 8 },
 });
